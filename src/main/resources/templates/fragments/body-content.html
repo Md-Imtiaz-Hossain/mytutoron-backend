@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<div class="card-footer pt-5" th:fragment="pagination">
+    <!-- Display page numbers as links -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="page-item" th:if="${pagesForPagination.hasPrevious()}">
+                <a class="page-link" th:href="@{${url}(page=${pagesForPagination.previousPageable().pageNumber})}">Previous</a>
+            </li>
+            <li class="page-item"
+                th:classappend="${pagesForPagination.number == page ? 'active' : ''}" th:each="page : ${#numbers.sequence(0, pagesForPagination.totalPages - 1)}">
+                <a class="page-link" th:href="@{${url}(page=${page})}" th:text="${page + 1}">1</a>
+            </li>
+            <li class="page-item" th:if="${pagesForPagination.hasNext()}">
+                <a class="page-link" th:href="@{${url}(page=${pagesForPagination.nextPageable().pageNumber})}">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<body>
+</body>
+</html>

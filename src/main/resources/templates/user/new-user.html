@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/stylesheets::head">
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul th:replace="fragments/header::leftNavbar"></ul>
+        <!-- Right navbar links -->
+        <ul th:replace="fragments/header::rightNavbar"></ul>
+    </nav>
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a th:replace="fragments/sidebar::brandLogo"></a>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar Menu -->
+            <nav th:replace="fragments/sidebar::sidebarMenu"></nav>
+        </div>
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Add User</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin: 0; padding: 0">
+        <!-- /.content-header -->
+
+        <!-- Starting Add Book Form -->
+        <div class="add-book-form p-3">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="card p-3">
+                        <!-- FLASH RESPONSE MESSAGE START -->
+                        <div class="ml-auto mr-auto" th:if="${responseMessage}">
+                            <div class="alert text-center" role="alert" th:classappend="${responseMessage.type}"
+                                 th:text="${responseMessage.message}">
+                            </div>
+                        </div>
+                        <!-- FLASH RESPONSE MESSAGE END -->
+                        <h3 class="text-center my-3">User Details</h3>
+                        <form method="POST" th:action="@{/users}" th:object="${user}">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input
+                                            class="form-control"
+                                            id="firstName"
+                                            name="firstName"
+                                            placeholder="Enter First Name"
+                                            th:classappend="${#fields.hasErrors('firstName') ? 'is-invalid' : ''}"
+                                            th:field="*{firstName}"
+                                            th:value="${user.firstName}"
+                                            type="text"
+                                    >
+                                    <div class="invalid-feedback" style="font-size: 15px"
+                                         th:each="error : ${#fields.errors('firstName')}" th:text="${error}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input
+                                            class="form-control"
+                                            id="lastName"
+                                            name="lastName"
+                                            placeholder="Enter Last Name"
+                                            th:classappend="${#fields.hasErrors('lastName') ? 'is-invalid' : ''}"
+                                            th:field="*{lastName}"
+                                            th:value="${user.lastName}"
+                                            type="text"
+                                    >
+                                    <div class="invalid-feedback" style="font-size: 15px"
+                                         th:each="error : ${#fields.errors('lastName')}" th:text="${error}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input
+                                            class="form-control"
+                                            id="email"
+                                            name="email"
+                                            placeholder="Enter Email"
+                                            th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"
+                                            th:field="*{email}"
+                                            th:value="${user.email}"
+                                            type="email"
+                                    >
+                                    <div class="invalid-feedback" style="font-size: 15px"
+                                         th:each="error : ${#fields.errors('email')}" th:text="${error}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input
+                                            class="form-control"
+                                            id="password"
+                                            name="password"
+                                            placeholder="Enter Password"
+                                            th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}"
+                                            th:field="*{password}"
+                                            th:value="${user.password}"
+                                            type="password"
+                                    >
+                                    <div class="invalid-feedback" style="font-size: 15px"
+                                         th:each="error : ${#fields.errors('password')}" th:text="${error}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Role</label>
+                                    <div class="col-sm-8">
+                                        <th:block th:each="role : ${roles}">
+                                            <div class="form-check">
+                                                <input
+                                                        class="form-check-input"
+                                                        id="roles"
+                                                        name="roles"
+                                                        th:field="*{roleIds}"
+                                                        th:value="${role.id}"
+                                                        type="radio"
+                                                >
+                                                <label class="form-check-label" th:text="${role.name}"></label>
+                                            </div>
+                                        </th:block>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer">
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Footer -->
+    <footer class="main-footer" th:replace="fragments/footer::footer"></footer>
+</div>
+<div th:replace="fragments/scripts :: scripts"></div>
+</body>
+</html>

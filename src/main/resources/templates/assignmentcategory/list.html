@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/stylesheets::head">
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul th:replace="fragments/header::leftNavbar"></ul>
+        <!-- Right navbar links -->
+        <ul th:replace="fragments/header::rightNavbar"></ul>
+    </nav>
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a th:replace="fragments/sidebar::brandLogo"></a>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar Menu -->
+            <nav th:replace="fragments/sidebar::sidebarMenu"></nav>
+        </div>
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h1 class="m-0 mr-3">Assignment Categories</h1>
+                        <a class="btn btn-sm btn-primary" th:href="@{'/assignment-categories/create'}"><i class="fas fa-plus">
+                            Add</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin: 0; padding: 0">
+
+        <!-- Starting Book Table -->
+        <div class="book-table p-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Category List</h3>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="assignmentCategory : ${assignmentCategories}">
+                            <td th:text="${assignmentCategory.name}"></td>
+                            <td th:text="${#strings.abbreviate(assignmentCategory.description, 40)}"></td>
+                            <td>
+                                <a class="btn btn-sm btn-success" th:href="@{/assignment-categories/{id} (id = ${assignmentCategory.id})}"><i
+                                        class="fas fa-eye"></i></a>
+                                <a class="btn btn-sm btn-primary" th:href="@{/assignment-categories/{id}/update (id = ${assignmentCategory.id})}"><i
+                                        class="fas fa-pen"></i></a>
+                                <a class="btn btn-sm btn-danger" href="#"
+                                   th:onclick="deleteItem([[${assignmentCategory.id}]], '/assignment-categories/', 'assignment-category')"> <i
+                                        class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div th:replace="fragments/body-content::pagination"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Footer -->
+    <footer class="main-footer" th:replace="fragments/footer::footer"></footer>
+</div>
+
+<div th:replace="fragments/scripts :: scripts"></div>
+
+</body>
+</html>

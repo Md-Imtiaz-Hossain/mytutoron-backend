@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Log in</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+          rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.css}">
+    <link rel="stylesheet" th:href="@{/css/adminlte.min.css}">
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="card card-outline card-primary">
+        <div class="card-header text-center">
+            <a class="h1" href="#">my<b>Tutor</b>on</a>
+        </div>
+        <div class="card-body">
+            <div style="justify-content: center; align-items: center; text-align: center; margin-bottom: 20px">
+                <img style="width: 70px"
+                     th:src="@{/images/img_1.png}">
+            </div>
+            <form method="post" th:action="@{/login}">
+                <div th:if="${param.error}">
+                    <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+                </div>
+                <div th:if="${param.logout}">
+                    <p class="text-warning">You have been logged out</p>
+                </div>
+                <div class="input-group mb-3">
+                    <input class="form-control" name="email" placeholder="Email" type="email">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input class="form-control" name="password" placeholder="Password" type="password">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <input id="remember" name="remember-me" type="checkbox">
+                            <label for="remember">
+                                Remember Me
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-primary btn-block" type="submit" value="Login"><b>Sign In</b></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/adminlte.min.js}"></script>
+</body>
+</html>
+

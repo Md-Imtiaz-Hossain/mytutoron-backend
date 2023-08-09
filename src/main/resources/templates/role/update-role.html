@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/stylesheets::head">
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul th:replace="fragments/header::leftNavbar"></ul>
+        <!-- Right navbar links -->
+        <ul th:replace="fragments/header::rightNavbar"></ul>
+    </nav>
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a th:replace="fragments/sidebar::brandLogo"></a>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar Menu -->
+            <nav th:replace="fragments/sidebar::sidebarMenu"></nav>
+        </div>
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Update Role</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin: 0; padding: 0">
+
+        <!-- Starting Add Role Form -->
+        <div class="add-book-form p-3">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="card p-3">
+                        <h3 class="text-center my-3">Role Details</h3>
+                        <form method="post" th:action="@{'/roles/update/' + ${role.id}}" th:object="${role}">
+                            <div class="card-body">
+
+                                <div class="form-group">
+                                    <label class="form-label" for="name">Role Name</label>
+                                    <input
+                                            class="form-control"
+                                            id="name"
+                                            name="name"
+                                            placeholder="Enter Role Name"
+                                            th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"
+                                            th:field="*{name}"
+                                            th:value="${role.name}"
+                                            type="text"
+                                    >
+                                    <div class="invalid-feedback" style="font-size: 15px"
+                                         th:each="error : ${#fields.errors('name')}" th:text="${error}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea
+                                            class="form-control"
+                                            id="description"
+                                            name="description"
+                                            placeholder="Enter Role Description"
+                                            rows="5"
+                                            th:classappend="${#fields.hasErrors('description') ? 'is-invalid' : ''}"
+                                            th:field="*{description}"
+                                            th:text="${role.description}">
+                                    </textarea>
+                                    <div class="invalid-feedback" style="font-size: 15px"
+                                         th:each="error : ${#fields.errors('description')}" th:text="${error}">
+                                    </div>
+                                </div>
+
+                                <div class="card-footer">
+                                    <input class="btn btn-primary" type="submit" value="Submit">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Footer -->
+    <footer class="main-footer" th:replace="fragments/footer::footer"></footer>
+</div>
+
+<div th:replace="fragments/scripts :: scripts"></div>
+
+</body>
+</html>
+

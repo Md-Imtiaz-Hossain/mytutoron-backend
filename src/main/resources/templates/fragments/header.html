@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- Left navbar links Start -->
+<ul class="navbar-nav" th:fragment="leftNavbar">
+    <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+        <a class="nav-link" th:href="@{/after-login-dashboard}">Home</a>
+    </li>
+</ul>
+
+<!-- Right navbar links -->
+<ul class="navbar-nav ml-auto" th:fragment="rightNavbar">
+	<li class="nav-item">
+		<p style="margin-top: 8px; margin-left: 15px" th:text="${loggedInUser.firstName+' '+loggedInUser.lastName}"></p>
+	</li>
+    <li class="nav-item">
+        <div class="btn-group">
+            <button class="btn btn-sm dropdown-toggle dropdown-hover dropdown-icon mt-1"
+                    data-toggle="dropdown"
+                    type="button">
+                <img alt="img" class="img img-circle"
+                     style="height: 22px; width: 22px; margin-bottom: 8px" th:src="@{/images/user1-128x128.jpg}"/>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu" role="menu">
+                <a class="dropdown-item" th:href="@{/profile/view}">Profile</a>
+                <div class="dropdown-divider"></div>
+<!--                <a class="dropdown-item" th:href="@{/profile/update-password}">Update Password</a>-->
+<!--                <div class="dropdown-divider"></div>-->
+                <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+            </div>
+        </div>
+    </li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+V-1
+Admin panel:
+
+1.	Login, logout, and profile
+2.	User CRUD
+3.	Role CRUD
+4.	Assignments [Running, Done, All] details with status
+5.	Admin Can upload completed work files, links, and so on…
+
+User Panel:
+
+1.	Login, Logout, Register
+2.	After login (Profile, Assignment[All list, Received, Not Received, Complete]) details with status
+3.	Assignment category (Project, Assignment)
+4.	Logged-in users can upload pdf, any image format [ios-HEIF or HEVC], file drive links, and others.
+5.	After uploading the completed file or resource from the admin, the user can view his/her assigned work-ready file/resource.
+
+Database:
+
+0.   Base (id, created_at, created_by, updated_at, updated_by)
+
+1.	User
+-	Admin panel:  (first_name, last_name, email, password, is_enable, is_verified)
+-	User panel: (first_name, last_name, email, password)
+2.	Role (name, description)
+3.	Users_Role (user_id, role_id)
+4.	Contact (user_id, phone, WhatsApp, Telegram, Facebook, LinkedIn,  town, zip, Country)
+
+5.	Assignment (user_id, title, additional_note)
+6.	Assignment_Category (assignment_id, name, details)
+7.	Amount (assignment_id, amount, discount, bonus)
+8.	Status (assignment_id, current_stage, stage_details/remarks for assignor) [Get, Receiver, Running, Complete, Delivered]
+9.	Timeline (assignment_id, assigned_date, accepted_date, deadline_by_assignor, extended_deadline_by_assignor, remaining_day_hour)
+
+●	Need Categories for Assignments and projects, maybe subject name or code too.
+●	Messages to show to the user when lands on landing page
+●
+
+
+
+V-2
+
+
+
+Resources:
+
+https://tutorbin.com/
+
+www.mytutoron.com

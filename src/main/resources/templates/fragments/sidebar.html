@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+<!-- Brand Logo Start-->
+<a class="brand-link" href="#" th:fragment="brandLogo">
+    <img alt="AdminLTE Logo" class="brand-image img-circle elevation-3 border-2 border-danger"
+         style="opacity: .8"
+         th:src="@{/images/website-icons/tabicon.ico}">
+    <span class="brand-text font-weight-light">MyTutorOn</span>
+</a>
+
+<!-- Sidebar Menu -->
+<nav class="mt-2" th:fragment="sidebarMenu">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview"
+        role="menu">
+
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/}"
+               th:classappend="${#httpServletRequest.getRequestURI() == '/dashboard' ? 'active':''}"
+               sec:authorize="hasAnyAuthority('Admin', 'RootAdmin', 'SuperAdmin')">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    Dashboard
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/users}"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/users') ? 'active':''}"
+               sec:authorize="hasAnyAuthority('Admin', 'RootAdmin', 'SuperAdmin')">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                    User
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/roles}"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/roles') ? 'active':''}"
+               sec:authorize="hasAnyAuthority('Admin', 'RootAdmin', 'SuperAdmin')">
+                <i class="nav-icon fas fa-user-shield"></i>
+                <p>
+                    Role
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/assignments}"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/assignments') ? 'active':''}"
+               sec:authorize="hasAnyAuthority('Admin', 'RootAdmin', 'SuperAdmin')">
+                <i class="nav-icon fas fa-book-open"></i>
+                <p>
+                    Assignment
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/assignment-categories}"
+               th:classappend="${#httpServletRequest.getRequestURI().startsWith('/assignment-categories') ? 'active':''}"
+               sec:authorize="hasAnyAuthority('Admin', 'RootAdmin', 'SuperAdmin')">
+                <i class="nav-icon fas fa-list"></i>
+                <p>
+                    Assignment Category
+                </p>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+</body>
+</html>

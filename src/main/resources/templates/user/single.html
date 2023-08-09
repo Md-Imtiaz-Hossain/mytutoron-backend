@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/stylesheets::head">
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul th:replace="fragments/header::leftNavbar"></ul>
+        <!-- Right navbar links -->
+        <ul th:replace="fragments/header::rightNavbar"></ul>
+    </nav>
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a th:replace="fragments/sidebar::brandLogo"></a>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar Menu -->
+            <nav th:replace="fragments/sidebar::sidebarMenu"></nav>
+        </div>
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">User Profile</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin: 0; padding: 0">
+
+        <!-- Starting User Profile -->
+        <div class="row py-5">
+            <div class="col-md-6 offset-md-3">
+                <div class="card card-widget widget-user-2">
+                    <div class="widget-user-header bg-info">
+                        <div class="widget-user-image">
+                            <img alt="User Avatar" class="img-circle elevation-2" th:src="@{/images/user1-128x128.jpg}">
+                        </div>
+                        <h3 class="widget-user-username pt-3" th:text="${user.firstName+' '+user.lastName}"></h3>
+                    </div>
+                    <div class="card-footer p-0">
+                        <div class="table-responsive">
+	                        <table class="table">
+	                            <tbody>
+	                                <tr>
+	                                    <th scope="row">First Name</th>
+	                                    <td th:text="${user.firstName}"></td>
+	                                </tr>
+	                                <tr>
+	                                    <th scope="row">Last Name</th>
+	                                    <td th:text="${user.lastName}"></td>
+	                                </tr>
+	                                <tr>
+	                                    <th scope="row">Email</th>
+	                                    <td th:text="${user.email}"></td>
+	                                </tr>
+	                                <tr>
+	                                    <th scope="row">Roles</th>
+	                                    <td>
+	                                    	<span class="badge badge-warning" th:each="role : ${user.roles}" th:text="${role.name}"></span>
+	                                    </td>
+	                                </tr>
+	                                <tr>
+	                                	<td><a class="btn btn-primary mt-2" th:href="@{/users/{id}/update (id = ${user.id}) }">Edit User</a></td>
+	                                	<td></td>
+	                                </tr>
+	                            </tbody>
+	                        </table>
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Footer -->
+    <footer class="main-footer" th:replace="fragments/footer::footer"></footer>
+</div>
+<div th:replace="fragments/scripts :: scripts"></div>
+</body>
+</html>

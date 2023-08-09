@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/stylesheets::head">
+    <title></title>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul th:replace="fragments/header::leftNavbar"></ul>
+        <!-- Right navbar links -->
+        <ul th:replace="fragments/header::rightNavbar"></ul>
+    </nav>
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a th:replace="fragments/sidebar::brandLogo"></a>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar Menu -->
+            <nav th:replace="fragments/sidebar::sidebarMenu"></nav>
+        </div>
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Add Book</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin: 0; padding: 0">
+
+        <!-- Starting Add Book Form -->
+        <div class="add-book-form p-3">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="card p-3">
+                        <h3 class="text-center my-3">Book Details</h3>
+                        <form method="POST" th:action="@{/assignments}" th:object="${assignment}">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="assignmentTitle">Book Title</label>
+                                    <input class="form-control" id="assignmentTitle" name="title"
+                                           placeholder="Enter Book Title"
+                                           th:field="*{assignmentTitle}"
+                                           type="text"
+                                           th:value="${assignment.assignmentTitle}"
+                                           th:classappend="${#fields.hasErrors('assignmentTitle') ? 'is-invalid' : ''}"
+                                    >
+                                    <div class="invalid-feedback" style="font-size: 15px"
+                                         th:each="error : ${#fields.errors('assignmentTitle')}" th:text="${error}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="additionalNote">Additional Note</label>
+                                    <input class="form-control" id="additionalNote" name="additionalNote"
+                                           placeholder="Enter additionalNote Here"
+                                           th:field="*{additionalNote}" type="text"
+                                           th:value="${assignment.additionalNote}"
+                                           th:classappend="${#fields.hasErrors('additionalNote') ? 'is-invalid' : ''}"
+                                    >
+                                    <div class="invalid-feedback" style="font-size: 15px"
+                                         th:each="error : ${#fields.errors('additionalNote')}" th:text="${error}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="category">Category</label>
+                                    <select class="form-control" id="category" name="category"
+                                            th:field="*{assignmentCategory.id}">
+                                        <option th:each="category : ${categories}" th:text="${category.name}"
+                                                th:value="${category.id}"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input th:field="*{id}" type="hidden">
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Footer -->
+    <footer class="main-footer" th:replace="fragments/footer::footer"></footer>
+</div>
+<div th:replace="fragments/scripts :: scripts"></div>
+</body>
+</html>

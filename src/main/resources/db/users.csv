@@ -1,0 +1,12 @@
+Column,Value (1),Value (2),Value (3)
+id,2fdd0b8b-4a70-11eb-99fd-ad786a821574,b5454248-54d6-4b17-86cd-17db0dc5b2a8,d43dce05-f4d7-44e2-97d6-d4970f872fca
+created_at,,2023-07-30 22:15:29.024327,2023-07-31 23:58:53.632345
+created_by,,ANONYMOUS,ANONYMOUS
+updated_at,,2023-07-30 22:15:52.383279,
+updated_by,,,
+email,superadmin@gmail.com,imtiaz15-11790@diu.edu.bd,super_admin@jamilxt.com
+first_name,Super,Md Imtiaz,Super
+is_enabled,true,true,true
+is_verified,true,false,true
+last_name,Admin,Hossain,Admin
+password,$2a$10$1ZG/xa/.dk5pTu01kRpz.uneOYni/PFqqWASIBKuYYQn2SccgDlha,$2a$10$DOneaUVVSvRMUlnWv/txme721GmMPVBW3dfbHf7Ar00xTvRk9o/Y.,$2a$10$pHHXiBORUA1kCBapRiXXIeh6Li9vllmnCoeZeqGx.Un6fV1n.ecYK

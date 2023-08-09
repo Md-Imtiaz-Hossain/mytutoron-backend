@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/stylesheets::head">
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul th:replace="fragments/header::leftNavbar"></ul>
+        <!-- Right navbar links -->
+        <ul th:replace="fragments/header::rightNavbar"></ul>
+    </nav>
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a th:replace="fragments/sidebar::brandLogo"></a>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar Menu -->
+            <nav th:replace="fragments/sidebar::sidebarMenu"></nav>
+        </div>
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">View Role</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin: 0; padding: 0">
+
+        <!-- Starting User Profile -->
+        <div class="row py-5">
+            <div class="col-md-6 offset-md-3">
+                <div class="card card-widget widget-user-2">
+                    <div class="bg-info p-4">
+                        <h3>Role Details</h3>
+                    </div>
+                    <div class="card-footer p-0">
+                        <div class="table-responsive">
+	                        <table class="table">
+	                            <tbody>
+	                                <tr>
+	                                    <th scope="row">Role</th>
+	                                    <td th:text="${role.name}"></td>
+	                                </tr>
+	                                <tr>
+	                                    <th scope="row">Description</th>
+	                                    <td th:text="${role.description}"></td>
+	                                </tr>
+	                                <tr>
+	                                	<td><a class="btn btn-primary mt-2" th:href="@{/roles/{id}/update (id = ${role.id}) }">Edit Role</a></td>
+	                                	<td></td>
+	                                </tr>
+	                            </tbody>
+	                        </table>
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Footer -->
+    <footer class="main-footer" th:replace="fragments/footer::footer"></footer>
+</div>
+
+<div th:replace="fragments/scripts :: scripts"></div>
+
+</body>
+</html>
+

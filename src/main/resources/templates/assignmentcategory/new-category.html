@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/stylesheets::head">
+
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul th:replace="fragments/header::leftNavbar"></ul>
+        <!-- Right navbar links -->
+        <ul th:replace="fragments/header::rightNavbar"></ul>
+    </nav>
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a th:replace="fragments/sidebar::brandLogo"></a>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar Menu -->
+            <nav th:replace="fragments/sidebar::sidebarMenu"></nav>
+        </div>
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Add Category</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="margin: 0; padding: 0">
+
+        <!-- Starting Add Book Form -->
+        <div class="add-book-form p-3">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="card p-3">
+                    	<!-- FLASH RESPONSE MESSAGE START -->
+                        <div th:if="${responseMessage}" class="ml-auto mr-auto">
+                            <div class="alert text-center" th:classappend="${responseMessage.type}" role="alert" th:text="${responseMessage.message}">
+                            </div>
+                        </div>
+                        <!-- FLASH RESPONSE MESSAGE END -->
+                        <h3 class="text-center my-3">Category Details</h3>
+                        <form method="POST" th:action="@{/assignment-categories}" th:object="${assignmentCategory}">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="name">Category Name</label>
+                                    <input
+                                    	type="text"
+                                        class="form-control"
+                                        id="name"
+                                        name="name"
+                                        th:field="*{name}"
+                                        th:value="${assignmentCategory.name}"
+                                        placeholder="Enter Category Name"
+                                        th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"    
+                                    >
+                                    
+                                    <div class="invalid-feedback" style="font-size: 15px" th:each="error : ${#fields.errors('name')}" th:text="${error}">
+                                    
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea  
+                                    	class="form-control" 
+                                    	id="description" 
+                                    	name="description"
+                                    	rows="5"
+                                    	th:field="*{description}"
+                                    	th:text="${assignmentCategory.description}"
+                                    	placeholder="Enter Category Description"
+                                    	th:classappend="${#fields.hasErrors('description') ? 'is-invalid' : ''}"></textarea>
+                                    	
+                                    <div class="invalid-feedback" style="font-size: 15px" th:each="error : ${#fields.errors('description')}" th:text="${error}">
+										
+	                                </div>	
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Footer -->
+    <footer class="main-footer" th:replace="fragments/footer::footer"></footer>
+</div>
+<div th:replace="fragments/scripts :: scripts"></div>
+</body>
+</html>
