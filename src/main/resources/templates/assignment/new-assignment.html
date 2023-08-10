@@ -30,25 +30,25 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Add Book</h1>
+                        <h1 class="m-0">Add Assignment</h1>
                     </div>
                 </div>
             </div>
         </div>
         <hr style="margin: 0; padding: 0">
 
-        <!-- Starting Add Book Form -->
+        <!-- Starting Add Assignment Form -->
         <div class="add-book-form p-3">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <div class="card p-3">
-                        <h3 class="text-center my-3">Book Details</h3>
+                        <h3 class="text-center my-3">Assignment Details</h3>
                         <form method="POST" th:action="@{/assignments}" th:object="${assignment}">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="assignmentTitle">Book Title</label>
+                                    <label for="assignmentTitle">Assignment Title</label>
                                     <input class="form-control" id="assignmentTitle" name="title"
-                                           placeholder="Enter Book Title"
+                                           placeholder="Enter Assignment Title"
                                            th:field="*{assignmentTitle}"
                                            type="text"
                                            th:value="${assignment.assignmentTitle}"
@@ -61,7 +61,7 @@
                                 <div class="form-group">
                                     <label for="additionalNote">Additional Note</label>
                                     <input class="form-control" id="additionalNote" name="additionalNote"
-                                           placeholder="Enter additionalNote Here"
+                                           placeholder="Enter additional Note Here"
                                            th:field="*{additionalNote}" type="text"
                                            th:value="${assignment.additionalNote}"
                                            th:classappend="${#fields.hasErrors('additionalNote') ? 'is-invalid' : ''}"

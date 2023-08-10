@@ -58,7 +58,7 @@
 	                                </tr>
 	                                <tr>
 	                                    <th scope="row">Category</th>
-	                                    <td th:text="${assignment.assignmentCategory}"></td>
+	                                    <td th:text="${assignment.assignmentCategory.getName()}"></td>
 	                                </tr>
 	                                <tr>
 	                                	<td><a class="btn btn-primary mt-2" th:href="@{/assignments/{id}/update (id = ${assignment.id}) }">Edit Assignment</a></td>
