@@ -20,7 +20,7 @@ public final class AppConstant {
     public static final String DEFAULT_PAGE_NO = "0";
     public static final String DEFAULT_PAGE_SIZE = "10";
     public static final String DEFAULT_SORT_BY_FIELD = "createdAt";
-    public static final String DEFAULT_ASC_OR_DESC_VALUE = "DESC";
+    public static final String DEFAULT_ASC_OR_DESC_VALUE = "ASC";
     public static final int DEFAULT_TOKEN_VALIDITY_SECONDS = 7 * 24 * 60 * 60; // 7 DAY
 
     private AppConstant() {

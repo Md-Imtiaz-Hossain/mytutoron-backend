@@ -108,7 +108,7 @@ public class AssignmentCategoryController {
 
     @GetMapping("/{id}/delete")
     public String deleteAssignmentCategory(@PathVariable UUID id) {
-        assignmentCategoryService.deleteAssignment(id);
+        assignmentCategoryService.deleteAssignmentCategory(id);
         return "redirect:/assignment-categories";
     }
 }
