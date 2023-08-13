@@ -1,12 +1,12 @@
-package imtiaz.sktech.mytutoron.controller.rest;
+package imtiaz.sktech.mytutoron.controller.rest.backend;
 
-import lombok.RequiredArgsConstructor;
 import imtiaz.sktech.mytutoron.model.dto.request.CreateUserRequest;
 import imtiaz.sktech.mytutoron.model.dto.request.UpdateUserRequest;
 import imtiaz.sktech.mytutoron.model.dto.response.Response;
 import imtiaz.sktech.mytutoron.model.pagination.AscOrDesc;
 import imtiaz.sktech.mytutoron.model.pagination.PaginationArgs;
 import imtiaz.sktech.mytutoron.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +18,8 @@ import static imtiaz.sktech.mytutoron.constant.AppConstant.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/api/users")
-public class UserRestController {
+@RequestMapping(value = "/backend/api/users")
+public class BackendRestUserController {
 
     private final UserService userService;
 

@@ -71,8 +71,18 @@ public class UserService {
     }
 
     public User getLoggedInUser(Principal principal) {
+        if (principal == null || principal.getName() == null || principal.getName().isEmpty()) {
+            return createGuestUser();
+        }
         String username = principal.getName();
         return getUserByUsername(username);
+    }
+
+    private User createGuestUser() {
+        User guestUser = new User();
+        guestUser.setFirstName("Guest");
+        guestUser.setLastName("User");
+        return guestUser;
     }
 
     public UUID getLoggedInUserId(Principal principal) {

@@ -47,34 +47,38 @@ public class SecurityConfig {
         String[] staticResources = {"/css/**", "/images/**", "/fonts/**", "/scripts/**", "/plugins/**", "/frontimages/**", "/frontlayout/**",
                 " /resources/**", "/js/**", "/login", "/api/**", "/", "/static/**", "/dist/css/**", "/dist/js/**", "/dist/img/**", "/dist/**"};
 
-        http.authorizeRequests()
-                .antMatchers(staticResources).permitAll()
-                .antMatchers("/forgot-password", "/change-password", "/about/**", "/", "/login").permitAll()
-                .anyRequest().authenticated()
+//        http.authorizeRequests()
+//                .antMatchers(staticResources).permitAll()
+//                .antMatchers("/forgot-password", "/change-password", "/about/**", "/login").permitAll()
+//                .antMatchers("/api/users/**","/api/categories/**","/api/categories/create", "/backend/api/users/**").permitAll()
+//                .anyRequest().authenticated()
+//
+//                .and()
+//                .formLogin()
+//                .loginPage("/login").defaultSuccessUrl("/", true)
+//                .usernameParameter("email")
+//                .permitAll()
+//
+//                .and()
+//                .logout()
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                .logoutSuccessUrl("/")
+//                .invalidateHttpSession(true)
+//                .deleteCookies("JSESSIONID")
+//                .clearAuthentication(true)
+//                .permitAll()
+//
+//                .and()
+//                .rememberMe()
+//                .key("AbcDefgHijKlmnOpqrs_1234567890") //this will be created session id (cookies) when login
+//                .tokenValiditySeconds(DEFAULT_TOKEN_VALIDITY_SECONDS);
+//
+//        http.addFilterAfter(new LoggedInUserFilter(), UsernamePasswordAuthenticationFilter.class);
+//        return http.build();
 
-                .and()
-                .formLogin()
-                .loginPage("/login").defaultSuccessUrl("/", true)
-                .usernameParameter("email")
-                .permitAll()
-
-                .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-                .clearAuthentication(true)
-                .permitAll()
-
-                .and()
-                .rememberMe()
-                .key("AbcDefgHijKlmnOpqrs_1234567890") //this will be created session id (cookies) when login
-                .tokenValiditySeconds(DEFAULT_TOKEN_VALIDITY_SECONDS);
-
-        http.addFilterAfter(new LoggedInUserFilter(), UsernamePasswordAuthenticationFilter.class);
+        http
+                .csrf().disable();
         return http.build();
-
 
     }
 
