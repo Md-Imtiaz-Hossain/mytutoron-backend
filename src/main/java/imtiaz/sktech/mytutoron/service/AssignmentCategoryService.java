@@ -26,23 +26,6 @@ public class AssignmentCategoryService {
         return assignmentCategoryRepository.findAll(pageable).map(assignmentCategoryMapper::toDomain);
     }
 
-//    public Page<AssignmentCategory> getAllPaginatedAssignmentCategory(PaginationArgs paginationArgs) {
-//        Pageable pageable = AppUtils.getPageable(paginationArgs);
-//
-//        Page<AssignmentCategoryEntity> assignmentCategoryEntities;
-//        Map<String, Object> specificParameters = AppUtils.getSpecificParameters(paginationArgs.getParameters());
-//        if (!specificParameters.isEmpty()) {
-//            Specification<AssignmentCategoryEntity> assignmentCategoryEntitySpecification = UserSpecification.getSpecification(specificParameters);
-//            assignmentCategoryEntities = assignmentCategoryRepository.findAll(assignmentCategoryEntitySpecification, pageable);
-//        }
-//        else {
-//            assignmentCategoryEntities = assignmentCategoryRepository.findAll(pageable);
-//        }
-//
-//        List<AssignmentCategory> assignmentCategories = assignmentCategoryEntities.stream().map(assignmentCategoryMapper::toDomain).toList();
-//        return new PageImpl<>(assignmentCategories, pageable, assignmentCategoryEntities.getTotalElements());
-//    }
-
     public List<AssignmentCategory> getAllAssignmentCategory() {
         return assignmentCategoryRepository.findAll().stream().map(assignmentCategoryMapper::toDomain).toList();
     }
@@ -85,12 +68,4 @@ public class AssignmentCategoryService {
         return assignmentCategoryRepository.findAll(pageable).map(assignmentCategoryMapper::toDomain);
     }
 
-//    public Page<AssignmentCategoryEntity> getAllWithPagination(int pageNo, int pageSize, String sortBy, AscOrDesc ascOrDesc) {
-//
-//        Sort.Direction sortDirection = Sort.Direction.ASC;
-//        Pageable pageable = PageRequest.of(pageNo, pageSize, ascOrDesc, sortBy);
-//        Page<AssignmentCategoryEntity> pageResult = assignmentCategoryRepository.findAll(pageable);
-//
-//        return pageResult;
-//    }
 }

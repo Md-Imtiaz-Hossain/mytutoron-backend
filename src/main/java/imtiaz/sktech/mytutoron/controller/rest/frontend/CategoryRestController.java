@@ -28,44 +28,59 @@ import static imtiaz.sktech.mytutoron.constant.AppConstant.DEFAULT_ASC_OR_DESC_V
 public class CategoryRestController {
 
     private final AssignmentCategoryService assignmentCategoryService;
-    private final AssignmentCategoryRepository assignmentCategoryRepository;
 
     @GetMapping(value = "/all")
-    public ResponseEntity<List<AssignmentCategory>> getAllUsers() {
-        List<AssignmentCategory> allAssignmentCategory = assignmentCategoryService.getAllAssignmentCategory();
-        return ResponseEntity.ok(allAssignmentCategory);
+    public ResponseEntity<Response> getAllAssignmentCategory() {
+        return Response.getResponseEntity(
+                true,
+                "All Assignment Category loaded successfully.",
+                assignmentCategoryService.getAllAssignmentCategory()
+        );
     }
 
     @GetMapping(value = "/id/{id}")
-    public ResponseEntity<AssignmentCategory> findById(@PathVariable UUID id) {
-        return ResponseEntity.ok(assignmentCategoryService.getOne(id));
+    public ResponseEntity<Response> findById(@PathVariable UUID id) {
+        return Response.getResponseEntity(
+                true,
+                "Assignment Category loaded successfully.",
+                assignmentCategoryService.getOne(id)
+        );
     }
 
     @GetMapping(value = "/paginated")
-    public ResponseEntity<List<AssignmentCategory>> getAllPaginatedUsers(
+    public ResponseEntity<Response> getAllPaginatedAssignmentCategory(
             @RequestParam(name = PAGE_NO, defaultValue = DEFAULT_PAGE_NO, required = false) int pageNo,
             @RequestParam(name = PAGE_SIZE, defaultValue = DEFAULT_PAGE_SIZE, required = false) int pageSize,
             @RequestParam(name = SORT_BY, defaultValue = DEFAULT_SORT_BY_FIELD, required = false) String sortBy,
             @RequestParam(name = ASC_OR_DESC, defaultValue = DEFAULT_ASC_OR_DESC_VALUE, required = false) String sortDirection) {
-        List<AssignmentCategory> assignmentCategories = assignmentCategoryService.findAllWithPageable(pageNo, pageSize, sortBy, sortDirection).getContent();
-        return ResponseEntity.ok(assignmentCategories);
+        return Response.getResponseEntity(
+                true,
+                "Assignment Category loaded successfully through Page by page",
+                assignmentCategoryService.findAllWithPageable(pageNo, pageSize, sortBy, sortDirection).getContent()
+        );
     }
 
     @PostMapping(value = "/create")
-    public ResponseEntity<AssignmentCategoryEntity> createUser(@RequestBody CreateAssignmentCategoryRequest request) {
-        AssignmentCategoryEntity assignmentCategoryEntity = assignmentCategoryService.create(request);
-        return new ResponseEntity<>(assignmentCategoryEntity, HttpStatus.CREATED);
+    public ResponseEntity<Response> createAssignmentCategory(@RequestBody CreateAssignmentCategoryRequest request) {
+        return Response.getResponseEntity(
+                true,
+                "Assignment Category created successfully.",
+                assignmentCategoryService.createOne(request)
+        );
     }
 
 
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity<AssignmentCategoryEntity> updateUser(@Valid @RequestBody UpdateAssignmentCategoryRequest request, @PathVariable UUID id) {
-        AssignmentCategoryEntity assignmentCategoryEntity = assignmentCategoryService.updateAssignmentCategory(request, id);
-        return new ResponseEntity<>(assignmentCategoryEntity, HttpStatus.OK);
+    public ResponseEntity<Response> updateAssignmentCategory(@Valid @RequestBody UpdateAssignmentCategoryRequest request, @PathVariable UUID id) {
+        return Response.getResponseEntity(
+                true,
+                "Assignment Category updated successfully.",
+                assignmentCategoryService.updateAssignmentCategory(request, id)
+        );
     }
 
     @DeleteMapping(value = "/id/{userId}/delete")
-    public ResponseEntity<Response> deleteUser(@PathVariable UUID userId) {
+    public ResponseEntity<Response> deleteAssignmentCategory(@PathVariable UUID userId) {
         assignmentCategoryService.deleteAssignmentCategory(userId);
         return Response.getResponseEntity(
                 true,

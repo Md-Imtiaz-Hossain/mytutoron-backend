@@ -3,3 +3,8 @@ server:
 spring:
   profiles:
     active: local
+
+
+logging:
+  level:
+    org.springframework.security: DEBUG
