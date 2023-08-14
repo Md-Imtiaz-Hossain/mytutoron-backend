@@ -56,6 +56,7 @@ public class SecurityConfig {
                 .antMatchers(staticResources).permitAll()
                 .antMatchers("/forgot-password", "/change-password", "/about/**", "/login").permitAll()
                 .antMatchers("/api/users/**","/api/categories/**","/api/**", "/backend/api/users/**").permitAll()
+                .antMatchers("/swagger-ui/**","/v3/api-docs/**").permitAll()
                 .anyRequest().authenticated()
 
                 .and()

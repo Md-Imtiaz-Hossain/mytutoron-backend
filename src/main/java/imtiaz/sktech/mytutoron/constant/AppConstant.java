@@ -4,8 +4,8 @@ public final class AppConstant {
 
     public static final String SUPER_ADMIN_FIRST_NAME = "Super";
     public static final String SUPER_ADMIN_LAST_NAME = "Admin";
-    public static final String SUPER_ADMIN_EMAIL = "super_admin@jamilxt.com";
-    public static final String SUPER_ADMIN_PASSWORD = "1234";
+    public static final String SUPER_ADMIN_EMAIL = "superadmin@gmail.com";
+    public static final String SUPER_ADMIN_PASSWORD = "Abc12345";
     public static final String SUPER_ADMIN_ROLE_NAME = "Super Admin";
     public static final String SUPER_ADMIN_ROLE_DESCRIPTION = "Role for Super Admin.";
     public static final String CONSUMER_ROLE_NAME = "User";

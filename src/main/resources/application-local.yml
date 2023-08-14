@@ -2,6 +2,7 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/starter_gradle
+#    url: jdbc:mysql://localhost:3306/mytutoron
     username: root
     password: 600660
   jpa:

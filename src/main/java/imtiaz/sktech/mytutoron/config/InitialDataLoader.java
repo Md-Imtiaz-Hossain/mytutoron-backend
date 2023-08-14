@@ -1,12 +1,13 @@
-//package imtiaz.sktech.starter.config;
+//package imtiaz.sktech.mytutoron.config;
 //
 //import lombok.RequiredArgsConstructor;
-//import imtiaz.sktech.starter.constant.AppConstant;
-//import imtiaz.sktech.starter.persistence.entity.RoleEntity;
-//import imtiaz.sktech.starter.persistence.entity.UserEntity;
-//import imtiaz.sktech.starter.persistence.repository.RoleRepository;
-//import imtiaz.sktech.starter.persistence.repository.UserRepository;
+//import imtiaz.sktech.mytutoron.constant.AppConstant;
+//import imtiaz.sktech.mytutoron.persistence.entity.RoleEntity;
+//import imtiaz.sktech.mytutoron.persistence.entity.UserEntity;
+//import imtiaz.sktech.mytutoron.persistence.repository.RoleRepository;
+//import imtiaz.sktech.mytutoron.persistence.repository.UserRepository;
 //import org.springframework.context.ApplicationListener;
+//import org.springframework.context.annotation.DependsOn;
 //import org.springframework.context.event.ApplicationContextEvent;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@
 //
 //@RequiredArgsConstructor
 //@Component
+//@DependsOn("securityConfig")
 //public class InitialDataLoader implements ApplicationListener<ApplicationContextEvent> {
 //
 //    private final UserRepository userRepository;
