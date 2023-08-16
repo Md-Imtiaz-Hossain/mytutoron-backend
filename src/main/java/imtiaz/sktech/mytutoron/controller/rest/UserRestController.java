@@ -1,4 +1,4 @@
-package imtiaz.sktech.mytutoron.controller.rest.backend;
+package imtiaz.sktech.mytutoron.controller.rest;
 
 import imtiaz.sktech.mytutoron.model.dto.request.CreateUserRequest;
 import imtiaz.sktech.mytutoron.model.dto.request.UpdateUserRequest;
@@ -19,7 +19,7 @@ import static imtiaz.sktech.mytutoron.constant.AppConstant.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/backend/api/users")
-public class BackendRestUserController {
+public class UserRestController {
 
     private final UserService userService;
 

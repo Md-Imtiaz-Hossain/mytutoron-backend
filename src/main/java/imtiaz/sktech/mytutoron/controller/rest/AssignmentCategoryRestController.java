@@ -1,4 +1,4 @@
-package imtiaz.sktech.mytutoron.controller.rest.frontend;
+package imtiaz.sktech.mytutoron.controller.rest;
 
 import imtiaz.sktech.mytutoron.model.domain.AssignmentCategory;
 import imtiaz.sktech.mytutoron.model.dto.request.CreateAssignmentCategoryRequest;
@@ -25,7 +25,7 @@ import static imtiaz.sktech.mytutoron.constant.AppConstant.DEFAULT_ASC_OR_DESC_V
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/api/categories")
-public class CategoryRestController {
+public class AssignmentCategoryRestController {
 
     private final AssignmentCategoryService assignmentCategoryService;
 
