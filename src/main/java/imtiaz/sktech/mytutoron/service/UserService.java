@@ -47,8 +47,7 @@ public class UserService {
         if (!specificParameters.isEmpty()) {
             Specification<UserEntity> userSpecification = UserSpecification.getSpecification(specificParameters);
             userEntityPage = userRepository.findAll(userSpecification, pageable);
-        }
-        else {
+        } else {
             userEntityPage = userRepository.findAll(pageable);
         }
 
@@ -105,21 +104,28 @@ public class UserService {
     }
 
     public User createUser(CreateUserRequest request) {
+
+        var userEntity = userMapper.toEntity(request);
+        UUID userId = UUID.randomUUID();
+        userEntity.setId(userId);
+
         if (existsByEmail(request.getEmail())) {
             throw new AlreadyExistsException(USER_ALREADY_EXISTS + request.getEmail());
         }
 
+        Set<RoleEntity> roles = new HashSet<>();
         if (request.getRoleIds().isEmpty()) {
-            throw new NotFoundException("No Role found! Please select a role and submit again.");
+            RoleEntity emptyRole = roleRepository.findByName("empty_role")
+                    .orElseThrow(() -> new NotFoundException("No Role found! Please select a role and submit again."));
+            roles.add(emptyRole);
+        } else {
+            request.getRoleIds().forEach((roleId) -> {
+                RoleEntity roleEntity = roleRepository.findById(roleId)
+                        .orElseThrow(() -> new NotFoundException(ROLE_NOT_FOUND));
+                roles.add(roleEntity);
+            });
         }
 
-        Set<RoleEntity> roles = new HashSet<>();
-        request.getRoleIds().forEach((roleId)->{
-            RoleEntity roleEntity = roleRepository.findById(roleId).orElseThrow(()-> new NotFoundException(ROLE_NOT_FOUND));
-            roles.add(roleEntity);
-        });
-
-        var userEntity = userMapper.toEntity(request);
         userEntity.setRoles(roles);
         String encodedPassword = encodePasswordUsingString(request.getPassword());
         userEntity.setPassword(encodedPassword);
@@ -137,8 +143,8 @@ public class UserService {
         }
 
         Set<RoleEntity> roles = new HashSet<>();
-        request.getRoleIds().forEach((roleId)->{
-            RoleEntity roleEntity = roleRepository.findById(roleId).orElseThrow(()-> new NotFoundException(ROLE_NOT_FOUND));
+        request.getRoleIds().forEach((roleId) -> {
+            RoleEntity roleEntity = roleRepository.findById(roleId).orElseThrow(() -> new NotFoundException(ROLE_NOT_FOUND));
             roles.add(roleEntity);
         });
 
@@ -156,7 +162,7 @@ public class UserService {
     }
 
     public void deleteUser(UUID userId) {
-        UserEntity userEntity = userRepository.findById(userId).orElseThrow(()-> new NotFoundException(USER_NOT_FOUND));
+        UserEntity userEntity = userRepository.findById(userId).orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
         userRepository.delete(userEntity);
     }
 
